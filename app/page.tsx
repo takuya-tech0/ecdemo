@@ -28,11 +28,11 @@ export default function ECSite() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const productsRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products');
+        const productsRes = await fetch('https://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products');
         const productsData = await productsRes.json();
         setFeaturedProducts(productsData.slice(0, 5));
 
-        const categoriesRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/categories');
+        const categoriesRes = await fetch('https://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products');
         const categoriesData = await categoriesRes.json();
         setCategories(categoriesData);
       } catch (error) {
