@@ -24,15 +24,23 @@ export default function ECSite() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const productsRes = await fetch('https://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products');
+        const productsRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products', {
+          headers: {
+            'Content-Security-Policy': 'upgrade-insecure-requests'
+          }
+        });
         const productsData = await productsRes.json();
         setFeaturedProducts(productsData.slice(0, 5));
 
-        const categoriesRes = await fetch('https://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products');
+        const categoriesRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products', {
+          headers: {
+            'Content-Security-Policy': 'upgrade-insecure-requests'
+          }
+        });
         const categoriesData = await categoriesRes.json();
         setCategories(categoriesData);
       } catch (error) {
