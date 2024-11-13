@@ -28,19 +28,11 @@ useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const productsRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products', {
-          headers: {
-            'Content-Security-Policy': 'upgrade-insecure-requests'
-          }
-        });
+        const productsRes = await fetch('/api/proxy/api/products');
         const productsData = await productsRes.json();
         setFeaturedProducts(productsData.slice(0, 5));
 
-        const categoriesRes = await fetch('http://ec1114.ap-northeast-1.elasticbeanstalk.com/api/products', {
-          headers: {
-            'Content-Security-Policy': 'upgrade-insecure-requests'
-          }
-        });
+        const categoriesRes = await fetch('/api/proxy/api/categories');
         const categoriesData = await categoriesRes.json();
         setCategories(categoriesData);
       } catch (error) {
